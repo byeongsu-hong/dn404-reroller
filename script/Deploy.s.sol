@@ -39,20 +39,22 @@ contract DeployV2 is Script {
 
 contract DeployV3 is Script {
   function run() public {
+    address owner = vm.envAddress('OWNER');
+
     vm.createSelectFork('ethereum');
 
     // deploy
 
-    address owner = 0xf587eD06FBAc43b8333B6A50E9079b73fD579189;
-    RerollerV3 impl = RerollerV3(0x1FF8B89070D4dd359747f682C42081C88804F579);
-
     vm.startBroadcast();
 
+    RerollerV3 impl = new RerollerV3();
     RerollerV3 rerollerV3 = RerollerV3(
       address(new ERC1967Proxy(address(impl), abi.encodeCall(impl.initialize, (owner))))
     );
 
     vm.stopBroadcast();
+
+    require(rerollerV3.owner() == owner, 'RerollerV3: owner mismatch');
 
     console.log('RerollerV3 deployed');
     console.log('owner :', owner);
