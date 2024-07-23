@@ -17,4 +17,4 @@
 ## How to use (V3)
 
 1. Transfer DN404 to the Reroller contract with desired tokenId
-  2. `{{token}}.safeTransferFrom({{user}},{{reroller}},{{tokenId}},abi.encode({{desiredTokenId}}))`
+2. dn404.safeTransferFrom(`MY_ADDR`,`REROLLER_ADDR`,`MY_TOKEN_ID`,abi.encode(`DESIRED_TOKEN_ID`))
