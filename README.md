@@ -13,3 +13,8 @@
 1. Prepare account with 1 DN404 token
 2. Approve 1 DN404 token to the Reroller contract
 3. Execute `reroll` function
+
+## How to use (V3)
+
+1. Transfer DN404 to the Reroller contract with desired tokenId
+  2. `{{token}}.safeTransferFrom({{user}},{{reroller}},{{tokenId}},abi.encode({{desiredTokenId}}))`
