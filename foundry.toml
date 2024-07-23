@@ -1,0 +1,15 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib", "node_modules"]
+solc = "0.8.23"
+evm_version = "shanghai"
+cache = true
+cache_path = 'cache/foundry'
+optimizer = true
+optimizer_runs = 9999
+
+[rpc_endpoints]
+ethereum = "${ETHEREUM_MAINNET_RPC}"
+
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options

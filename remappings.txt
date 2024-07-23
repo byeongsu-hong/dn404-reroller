@@ -1,0 +1,6 @@
+@std/=lib/forge-std/src/
+@solmate/=lib/solmate/src/
+@solady/=lib/solady/src/
+
+@oz/=node_modules/@openzeppelin/contracts/
+@ozu/=node_modules/@openzeppelin/contracts-upgradeable/
