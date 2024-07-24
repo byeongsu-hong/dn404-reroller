@@ -6,8 +6,8 @@ DN404 Reroller is a smart contract that allows users to reroll their desired DN4
 
 ### Features
 
-- Single Reroll DN404 NFT
-- Warp Reroll DN404 NFT
+- [Single Reroll DN404 NFT](#single-reroll)
+- [Warp Reroll DN404 NFT](#warp-reroll)
 - [Reroll Karma](https://etherscan.io/token/0x9cd9ba6aa93401c4cda88b7d3ebef6b925fcd505)
 
 ### Reroll Karma
