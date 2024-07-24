@@ -8,7 +8,7 @@
 |       [v2](./src/RerollerV2.sol) | [0x165d918c272ce44826589b70e1223b9dae6d4c53](https://etherscan.io/address/0x165d918c272ce44826589b70e1223b9dae6d4c53) |
 |       [v3_1](./src/v3/RerollerV3_1.sol) | [0x1753f8ef288301b7d38dd8dcc0cc10a3b2535ba0](https://etherscan.io/address/0x1753f8ef288301b7d38dd8dcc0cc10a3b2535ba0) |
 
-## How to use
+## How to use (~V2)
 
 1. Prepare account with 1 DN404 token
 2. Approve 1 DN404 token to the Reroller contract
