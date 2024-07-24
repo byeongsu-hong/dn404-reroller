@@ -13,79 +13,13 @@ import {UUPSUpgradeable} from '@ozu/proxy/utils/UUPSUpgradeable.sol';
 
 import {ERC20} from '@solady/tokens/ERC20.sol';
 
+import {RerollKarma} from './RerollKarma.sol';
+import {TempVault} from './TempVault.sol';
+
 interface IRerollerV3DN404 is IERC20 {
   function setSkipNFT(bool skipNFT) external returns (bool);
   function getSkipNFT(address owner) external view returns (bool);
   function mirrorERC721() external returns (IERC721);
-}
-
-contract TempVault is Ownable, ERC721Holder {
-  using SafeERC20 for IRerollerV3DN404;
-
-  event AssetInitialized(IRerollerV3DN404 asset);
-  event AssetDeinitialized(IRerollerV3DN404 asset);
-
-  error TempVault__NotAllowed(IRerollerV3DN404 asset);
-  error TempVault__AlreadyAllowed(IRerollerV3DN404 asset);
-
-  constructor() Ownable() {}
-
-  function initNewAsset(IRerollerV3DN404 dn404) external onlyOwner {
-    IERC721 mirror = dn404.mirrorERC721();
-    address owner_ = owner();
-
-    dn404.setSkipNFT(false);
-    mirror.setApprovalForAll(owner_, true);
-    dn404.forceApprove(owner_, type(uint256).max);
-
-    emit AssetInitialized(dn404);
-  }
-
-  function deinitNewAsset(IRerollerV3DN404 dn404) external onlyOwner {
-    IERC721 mirror = dn404.mirrorERC721();
-    address owner_ = owner();
-
-    mirror.setApprovalForAll(owner_, false);
-    dn404.forceApprove(owner_, 0);
-
-    emit AssetDeinitialized(dn404);
-  }
-}
-
-contract RerollKarma is ERC20, Ownable, Pausable {
-  constructor() Ownable() Pausable() {}
-
-  function name() public pure override returns (string memory) {
-    return 'Reroll Karma';
-  }
-
-  function symbol() public pure override returns (string memory) {
-    return 'ROLL';
-  }
-
-  function decimals() public pure override returns (uint8) {
-    return 6;
-  }
-
-  function mint(address to, uint256 amount) public onlyOwner {
-    _mint(to, amount);
-  }
-
-  function burn(address from, uint256 amount) public onlyOwner {
-    _burn(from, amount);
-  }
-
-  function pause() public onlyOwner {
-    _pause();
-  }
-
-  function unpause() public onlyOwner {
-    _unpause();
-  }
-
-  function _beforeTokenTransfer(address from, address to, uint256 amount) internal override whenNotPaused {
-    super._beforeTokenTransfer(from, to, amount);
-  }
 }
 
 contract RerollerV3 is ERC721Holder, OwnableUpgradeable, UUPSUpgradeable {
